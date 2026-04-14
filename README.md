@@ -5,6 +5,7 @@ ForgotYourEmail is an intelligent email-management system that automatically fet
 🚀 Initial Version
 
 📌 Initial MVP Model Released: 21 December 2025
+Link:  https://forgotyouremail.vercel.app/
 
 📱 Features
 1. Gmail Email Sync
