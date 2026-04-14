@@ -1,0 +1,169 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+<style>
+/* ================= WRAPPER ================= */
+.fye-dl-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* ================= CARD ================= */
+.fye-dl-card {
+    width: 460px;
+    padding: 48px;
+
+    background: rgba(18,22,36,0.72);
+    backdrop-filter: blur(18px);
+    border-radius: 26px;
+    border: 1px solid rgba(255,255,255,0.08);
+
+    box-shadow: 0 0 70px rgba(90,140,255,0.3);
+    animation: fyeDlEnter 1.2s ease forwards;
+    text-align: center;
+}
+
+/* ================= ICON ================= */
+.fye-dl-icon {
+    font-size: 40px;
+    margin-bottom: 18px;
+}
+
+/* ================= TITLE ================= */
+.fye-dl-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* ================= TEXT ================= */
+.fye-dl-text {
+    font-size: 14px;
+    opacity: 0.85;
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+/* ================= BUTTON ================= */
+.fye-dl-btn {
+    padding: 14px 38px;
+    border-radius: 28px;
+    border: none;
+    cursor: pointer;
+
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+
+    background: linear-gradient(135deg, #4da3ff, #2b6bff);
+    box-shadow: 0 0 30px rgba(77,163,255,0.5);
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fye-dl-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 44px rgba(77,163,255,0.75);
+}
+
+/* ================= LINK ================= */
+.fye-dl-link {
+    display: block;
+    margin-top: 22px;
+    font-size: 13px;
+    opacity: 0.75;
+    color: red;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fyeDlEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+</style>
+
+<div class="fye-dl-wrapper">
+    <div class="fye-dl-card">
+
+        {% if already_downloaded %}
+
+            <div class="fye-dl-icon">✅</div>
+            <div class="fye-dl-title">Already Downloaded</div>
+
+            <div class="fye-dl-text">
+                You have already downloaded the app.
+                <br>
+                For any issues, please contact the developer.
+            </div>
+
+            <a class="fye-dl-link" href="{% url 'issue_mvp' %}">
+                Report an Issue →
+            </a>
+
+        {% else %}
+
+            <div class="fye-dl-icon">⬇️</div>
+            <div class="fye-dl-title">Download App</div>
+
+            <div class="fye-dl-text">
+                This is a limited MVP build.
+                <br>
+                You can download the app only once.
+            </div>
+
+            <form method="POST" id="download-form">
+                {% csrf_token %}
+                <button class="fye-dl-btn" type="submit" id="download-btn">
+                    Download APK
+                </button>
+            </form>
+
+            <script>
+const form = document.getElementById("download-form");
+const btn = document.getElementById("download-btn");
+
+form.addEventListener("submit", function(e) {
+    // Prevent multiple submissions
+    if (btn.dataset.clicked === "true") {
+        e.preventDefault();
+        return;
+    }
+
+    // Mark as clicked
+    btn.dataset.clicked = "true";
+
+    // Change button text immediately
+    btn.textContent = "Wait...";
+    btn.disabled = true;
+
+    // After a delay, change to Next → and convert to a link
+    setTimeout(() => {
+        btn.textContent = "Next →";
+        btn.disabled = false;
+
+        // Replace the button with a link to the next page
+        const nextLink = document.createElement("a");
+        nextLink.href = "{% url 'thankyou_mvp' %}";
+
+        nextLink.className = "fye-dl-btn";
+        nextLink.textContent = "Next →";
+        btn.replaceWith(nextLink);
+
+    }, 10000); // 3 seconds delay
+});
+</script>
+
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

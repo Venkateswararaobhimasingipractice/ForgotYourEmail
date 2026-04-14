@@ -1,0 +1,16 @@
+Django==5.1.4
+asgiref==3.8.1
+sqlparse==0.5.2
+django-cors-headers==4.6.0
+daphne==4.1.2
+requests==2.32.3
+pytz==2024.2
+tzdata==2024.2
+pillow==11.0.0
+gunicorn==23.0.0
+django-allauth
+djangorestframework
+PyJWT
+whitenoise
+google-auth
+psycopg2-binary==2.9.10

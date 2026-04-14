@@ -1,0 +1,116 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<style>
+/* ================= WRAPPER ================= */
+.fye-issue-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+/* ================= CARD ================= */
+.fye-issue-card {
+    background: rgba(28, 35, 55, 0.85);
+    backdrop-filter: blur(15px);
+    padding: 50px 40px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 50px rgba(77, 163, 255, 0.3);
+    animation: fyeFadeSlideIn 1s ease forwards;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* ================= TITLE ================= */
+.fye-issue-title {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* ================= INPUTS ================= */
+.fye-issue-input,
+.fye-issue-textarea {
+    width: 100%;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.fye-issue-input:focus,
+.fye-issue-textarea:focus {
+    border-color: #4da3ff;
+    box-shadow: 0 0 10px rgba(77,163,255,0.5);
+}
+
+/* ================= TEXTAREA ================= */
+.fye-issue-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* ================= BUTTON ================= */
+.fye-issue-btn {
+    padding: 14px 38px;
+    border-radius: 28px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    background: linear-gradient(135deg, #4da3ff, #2b6bff);
+    box-shadow: 0 0 30px rgba(77,163,255,0.5);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fye-issue-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 44px rgba(77,163,255,0.75);
+}
+
+/* ================= FOOTER LINK ================= */
+.fye-issue-footer {
+    margin-top: 15px;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fyeFadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+</style>
+
+<div class="fye-issue-wrapper">
+    <div class="fye-issue-card">
+        <div class="fye-issue-title">Report an Issue 🛠️</div>
+
+        <form method="POST" id="issue-form">
+            {% csrf_token %}
+            <input type="email" name="email" class="fye-issue-input" placeholder="Your Email" required>
+            <textarea name="issue" class="fye-issue-textarea" placeholder="Describe your issue here..." required></textarea>
+            <button type="submit" class="fye-issue-btn">Send Issue</button>
+        </form>
+
+        <div class="fye-issue-footer">
+            We'll respond as soon as possible. If urgent, contact the developer directly.
+        </div>
+    </div>
+</div>
+{% endblock %}

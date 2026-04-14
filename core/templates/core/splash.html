@@ -1,0 +1,151 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<style>
+/* ================= SPLASH WRAPPER ================= */
+.fye-splash-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* ================= SPLASH CARD ================= */
+.fye-splash-card {
+    width: 420px;
+    padding: 56px 48px;
+    text-align: center;
+
+    background: rgba(20, 25, 40, 0.65);
+    backdrop-filter: blur(18px);
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 0 60px rgba(80,120,255,0.25);
+
+    animation: splashFadeIn 1.6s ease forwards, cardFloat 6s ease-in-out infinite;
+}
+
+/* ================= ICON ================= */
+.fye-splash-icon {
+    font-size: 42px;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: iconFloat 1.4s ease forwards 0.6s;
+}
+
+/* ================= TITLE ================= */
+.fye-splash-title {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: textReveal 1s ease forwards 1s;
+}
+
+/* ================= TAGLINE ================= */
+.fye-splash-tagline {
+    font-size: 15px;
+    opacity: 0.85;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: textReveal 1s ease forwards 1.3s;
+}
+
+/* ================= BUTTON ================= */
+.fye-splash-btn {
+    margin-top: 10px;
+    padding: 14px 36px;
+    border-radius: 28px;
+    border: none;
+    cursor: pointer;
+
+    font-size: 15px;
+    font-weight: 500;
+    color: #ffffff;
+
+    background: linear-gradient(135deg, #4da3ff, #2b6bff);
+    box-shadow: 0 0 24px rgba(77,163,255,0.45);
+
+    opacity: 0;
+    animation: btnReveal 0.8s ease forwards 2.2s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fye-splash-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 36px rgba(77,163,255,0.65);
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes splashFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes cardFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes iconFloat {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes textReveal {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes btnReveal {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+
+<div class="fye-splash-wrapper">
+    <div class="fye-splash-card">
+        <div class="fye-splash-icon">✉️</div>
+
+        <div class="fye-splash-title">
+            Forgot Your Email
+        </div>
+
+        <div class="fye-splash-tagline">
+             Welcome to You! 👋
+        </div>
+
+        <a href="{% url 'register_mvp' %}">
+            <button class="fye-splash-btn">Click Here</button>
+        </a>
+    </div>
+</div>
+
+{% endblock %}

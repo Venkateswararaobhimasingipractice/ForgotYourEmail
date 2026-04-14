@@ -1,0 +1,98 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<style>
+/* ================= WRAPPER ================= */
+.fye-thank-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+/* ================= CARD ================= */
+.fye-thank-card {
+    background: rgba(28, 35, 55, 0.85);
+    backdrop-filter: blur(15px);
+    padding: 50px 40px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 50px rgba(77, 163, 255, 0.3);
+    animation: fadeSlideIn 1.2s ease forwards;
+    max-width: 500px;
+}
+
+/* ================= ICON ================= */
+.fye-thank-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    animation: bounce 1s infinite;
+}
+
+/* ================= TITLE ================= */
+.fye-thank-title {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* ================= TEXT ================= */
+.fye-thank-text {
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin-bottom: 25px;
+}
+
+/* ================= LINK ================= */
+.fye-thank-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 10px 25px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #4da3ff, #2b6bff);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 0 25px rgba(77, 163, 255, 0.5);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fye-thank-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 40px rgba(77, 163, 255, 0.7);
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+</style>
+
+<div class="fye-thank-wrapper">
+    <div class="fye-thank-card">
+        <div class="fye-thank-icon">🎉</div>
+        <div class="fye-thank-title">Thank You ✨</div>
+        <div class="fye-thank-text">
+            Your action has been completed successfully.<br>
+            If you face any issues, contact the developer or report here.
+        </div>
+        <a href="{% url 'issue_mvp' %}" class="fye-thank-link">
+            Report an Issue
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<style>
+/* ================= WRAPPER ================= */
+.fye-mvp-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0c172a, #1a2236);
+    font-family: 'Segoe UI', sans-serif;
+    color: #fff;
+}
+
+/* ================= CARD ================= */
+.fye-mvp-card {
+    background: rgba(28, 35, 55, 0.85);
+    backdrop-filter: blur(15px);
+    padding: 50px 40px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 50px rgba(77, 163, 255, 0.3);
+    animation: fyeFadeSlideIn 1s ease forwards;
+    max-width: 450px;
+    width: 100%;
+}
+
+/* ================= ICON ================= */
+.fye-mvp-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    animation: shake 1s infinite;
+}
+
+/* ================= TITLE ================= */
+.fye-mvp-title {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* ================= TEXT ================= */
+.fye-mvp-text {
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin-bottom: 25px;
+}
+
+/* ================= CONTACT LINK ================= */
+.fye-mvp-contact {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 14px;
+    padding: 10px 25px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #4da3ff, #2b6bff);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 0 25px rgba(77, 163, 255, 0.5);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fye-mvp-contact:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 40px rgba(77, 163, 255, 0.7);
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fyeFadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+    75% { transform: rotate(-3deg); }
+}
+</style>
+
+<div class="fye-mvp-wrapper">
+    <div class="fye-mvp-card">
+        <div class="fye-mvp-icon">⚠️</div>
+        <div class="fye-mvp-title">MVP Limit Reached</div>
+        <div class="fye-mvp-text">
+            Only 30 users are allowed for this MVP.
+            <br>
+            If you want access or have any queries, contact the developer:
+        </div>
+        <a href="mailto:srinu19773@gmail.com" class="fye-mvp-contact">
+            Email: venkateswara rao
+        </a>
+    </div>
+</div>
+{% endblock %}

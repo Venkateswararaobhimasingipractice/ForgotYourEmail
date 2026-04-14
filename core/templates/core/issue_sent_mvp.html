@@ -1,0 +1,102 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<style>
+/* ================= WRAPPER ================= */
+.fye-issue-sent-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+/* ================= CARD ================= */
+.fye-issue-sent-card {
+    background: rgba(28, 35, 55, 0.85);
+    backdrop-filter: blur(15px);
+    padding: 50px 40px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 50px rgba(77, 163, 255, 0.3);
+    animation: fyeFadeSlideIn 1s ease forwards;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* ================= ICON ================= */
+.fye-issue-sent-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    animation: bounce 1s infinite;
+}
+
+/* ================= TITLE ================= */
+.fye-issue-sent-title {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* ================= TEXT ================= */
+.fye-issue-sent-text {
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin-bottom: 25px;
+}
+
+/* ================= BUTTON ================= */
+.fye-issue-sent-btn {
+    padding: 14px 38px;
+    border-radius: 28px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    background: linear-gradient(135deg, #4da3ff, #2b6bff);
+    box-shadow: 0 0 30px rgba(77,163,255,0.5);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.fye-issue-sent-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 44px rgba(77,163,255,0.75);
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fyeFadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+</style>
+
+<div class="fye-issue-sent-wrapper">
+    <div class="fye-issue-sent-card">
+        <div class="fye-issue-sent-icon">✅</div>
+        <div class="fye-issue-sent-title">Thank You!</div>
+        <div class="fye-issue-sent-text">
+            Your issue has been submitted successfully.  
+            <br>
+            We will get back to you shortly.
+        </div>
+        <a href="{% url 'splash' %}" class="fye-issue-sent-btn">
+            Back to Home
+        </a>
+    </div>
+</div>
+{% endblock %}

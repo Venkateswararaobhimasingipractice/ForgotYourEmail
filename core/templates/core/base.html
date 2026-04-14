@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ForgotYourEmail</title>
+
+    <style>
+        /* ================= RESET ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ================= GALAXY BACKGROUND ================= */
+        .galaxy-bg {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(120,170,255,0.12), transparent 40%),
+                radial-gradient(circle at 80% 30%, rgba(90,130,255,0.10), transparent 45%),
+                radial-gradient(circle at 50% 80%, rgba(255,255,255,0.05), transparent 40%),
+                linear-gradient(to bottom, #0c172a 0%, #000000 70%);
+            z-index: -2;
+        }
+
+        /* ================= STARS LAYER ================= */
+        .stars-layer {
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(1.5px 1.5px at 10% 20%, white, transparent),
+                radial-gradient(1.5px 1.5px at 30% 70%, white, transparent),
+                radial-gradient(1.5px 1.5px at 50% 40%, white, transparent),
+                radial-gradient(1.5px 1.5px at 70% 80%, white, transparent),
+                radial-gradient(1.5px 1.5px at 90% 30%, white, transparent);
+            background-size: 300px 300px;
+            opacity: 0.55; /* increased for more shine */
+            animation: starFloat 60s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes starFloat {
+            from { transform: translateY(0); }
+            to { transform: translateY(-300px); }
+        }
+
+        /* ================= NAVBAR ================= */
+        .fye-nav {
+            height: 64px;
+            padding: 0 48px;
+            display: flex;
+            align-items: center;
+          
+
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .fye-nav-title {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* ================= NAV LINKS ================= */
+        .fye-nav-links {
+            padding: 40px;
+            display: flex;
+            gap: 24px;
+        }
+
+        .fye-nav-links a {
+            text-decoration: none;
+            color: #9ecbff;
+            font-size: 14px;
+            opacity: 0.85;
+            transition: opacity 0.2s ease;
+        }
+
+        .fye-nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* ================= PAGE CONTENT WRAPPER ================= */
+        .fye-page {
+            min-height: calc(100vh - 64px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* ================= SAFE CONTENT AREA ================= */
+        .fye-content {
+            width: 100%;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Galaxy Background -->
+<div class="galaxy-bg"></div>
+<div class="stars-layer"></div>
+
+<!-- Navbar -->
+<nav class="fye-nav">
+    <div class="fye-nav-title">
+        ForgotYourEmail
+    </div>
+    <div class="fye-nav-links">
+        <a href="{% url 'register_mvp' %}">Register</a>
+        <a href="{% url 'issue_mvp' %}">Issues</a>
+    </div>
+</nav>
+
+<!-- Page Content -->
+<div class="fye-page">
+    <div class="fye-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+
+</body>
+</html>

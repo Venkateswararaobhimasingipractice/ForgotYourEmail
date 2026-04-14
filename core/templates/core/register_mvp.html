@@ -1,0 +1,150 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+<style>
+/* ================= REGISTER WRAPPER ================= */
+.fye-reg-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* ================= CARD ================= */
+.fye-reg-card {
+    width: 440px;
+    padding: 50px 46px;
+
+    background: rgba(18, 22, 36, 0.68);
+    backdrop-filter: blur(18px);
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.08);
+
+    box-shadow: 0 0 60px rgba(90,140,255,0.28);
+
+    animation: fyeRegEnter 1.2s ease forwards;
+}
+
+/* ================= TITLE ================= */
+.fye-reg-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+/* ================= SUB ================= */
+.fye-reg-sub {
+    font-size: 14px;
+    opacity: 0.8;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+/* ================= INPUT ================= */
+.fye-reg-input {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+
+    color: #fff;
+    font-size: 14px;
+}
+
+.fye-reg-input:focus {
+    outline: none;
+    border-color: #5aa2ff;
+}
+
+/* ================= BUTTON ================= */
+.fye-reg-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+
+    border-radius: 28px;
+    border: none;
+    cursor: pointer;
+
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+
+    background: linear-gradient(135deg, #4da3ff, #2b6bff);
+    box-shadow: 0 0 28px rgba(77,163,255,0.45);
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fye-reg-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 38px rgba(77,163,255,0.7);
+}
+
+/* ================= ERROR ================= */
+.fye-reg-error {
+    color: #ff6b6b;
+    font-size: 13px;
+    margin-bottom: 14px;
+    text-align: center;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fyeRegEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+</style>
+
+<div class="fye-reg-wrapper">
+    <div class="fye-reg-card">
+
+        <div class="fye-reg-title">Join the MVP</div>
+        <div class="fye-reg-sub">
+            Limited early access · 30 users only
+        </div>
+
+        {% if error %}
+            <div class="fye-reg-error">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <input class="fye-reg-input"
+                   type="text"
+                   name="name"
+                   placeholder="Your Name"
+                   required>
+
+            <input class="fye-reg-input"
+                   type="email"
+                   name="email"
+                   placeholder="Email Address"
+                   required>
+
+            <input class="fye-reg-input"
+                   type="text"
+                   name="phone"
+                   placeholder="Phone Number"
+                   required>
+
+            <button class="fye-reg-btn" type="submit">
+                Continue
+            </button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
